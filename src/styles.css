@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap");
+
+:root {
+  --color-red: hsl(14, 86%, 42%);
+  --color-green: hsl(159, 69%, 38%);
+  --color-rose-50: hsl(20, 50%, 98%);
+  --color-rose-100: hsl(13, 31%, 94%);
+  --color-rose-300: hsl(14, 25%, 72%);
+  --color-rose-400: hsl(7, 20%, 60%);
+  --color-rose-500: hsl(12, 20%, 44%);
+  --color-rose-900: hsl(14, 65%, 9%);
+  --font-size-body-copy: 16px;
+  --font-family-body-copy: "Red Hat Text", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: var(--color-background);
+  font-family: var(--font-family-body-copy);
+  background-color: var(--color-rose-100);
+}
+.mainPageWrapper .bodyMainWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 70% 30%);
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid var(--color-rose-100);
+  padding: 20px;
+  background-color: var(--color-rose-100);
+}
+.bodyMainWrapper .innerWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.innerWrapper .contentMainDiv {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 32%);
+  align-items: center;
+  padding: 6px 12px;
+}
+.innerWrapper .contentMainDiv .cardDesign {
+  margin: 12px;
+  border-radius: 8px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.innerWrapper .contentMainDiv .cardDesign img {
+  width: 100%;
+  height: 230px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px;;
+}
+.title {
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  margin-left: 28px;
+}
+.dessertsName {
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-rose-500);
+}
+.dessertFullName {
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-rose-900);
+}
+.price {
+  color: var(--color-red);
+  font-weight: var(--font-weight-semibold);
+}
+.itemDiscription{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px;
+}
+.emptyCart{
+    color:var(--color-red);
+    font-weight:var(--font-weight-bold);
+    font-size:18px;
+  }
+
+  .itemCartMainContainer{
+    background-color: var(--color-rose-50);
+    padding: 12px;
+    margin: 20px auto;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width: 95%;
+    height: fit-content;
+  }
