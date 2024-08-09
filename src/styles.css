@@ -60,7 +60,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  border-radius: 4px;;
+  border-radius: 4px;
 }
 .title {
   font-size: 24px;
@@ -81,38 +81,99 @@ body {
   color: var(--color-red);
   font-weight: var(--font-weight-semibold);
 }
-.itemDiscription{
+.itemDiscription {
   display: flex;
   flex-direction: column;
   gap: 2px;
   padding: 6px;
   margin-top: 15px;
 }
-.emptyCart{
-    color:var(--color-red);
-    font-weight:var(--font-weight-bold);
-    font-size:18px;
-  }
+.emptyCart {
+  color: var(--color-red);
+  font-weight: var(--font-weight-bold);
+  font-size: 18px;
+}
 
-  .itemCartMainContainer{
-    background-color: var(--color-rose-50);
-    padding: 12px;
-    margin: 20px auto;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    width: 95%;
-    height: fit-content;
-  }
+.itemCartMainContainer {
+  background-color: var(--color-rose-50);
+  padding: 12px;
+  margin: 20px auto;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  width: 95%;
+  height: fit-content;
+  max-height: 500px;
+  min-height: 350px;
+  overflow: auto;
+}
+.addToCartBtn {
+  margin: -20px auto;
+  width: 150px;
+  height: 50px;
+}
 
-  .addToCartBtn{
-    border: 1px solid var(--color-rose-100);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 4px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: var(--font-weight-semibold);
-    background-color:var(--color-rose-50);
-    margin: -20px auto;
-    cursor: pointer;  
-  }
+.addToCartBtn .defultBtn {
+  border: 1px solid var(--color-rose-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  background-color: var(--color-rose-50);
+  cursor: pointer;
+}
+.addToCartBtn #counterbtn {
+  border: 1px solid var(--color-rose-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  background-color: var(--color-red);
+  cursor: pointer;
+  color: var(--color-rose-50);
+  cursor: inherit;
+}
+.addToCartBtn #counterbtn .incrementIcon,
+.addToCartBtn #counterbtn .decrementIcon {
+  border: 1px solid var(--color-rose-50);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+}
+.addToCartBtn #counterbtn .decrementIcon svg {
+  transform: translate(2px, -5.5px);
+}
+.addToCartBtn #counterbtn .incrementIcon svg {
+  transform: translate(2px, -2px);
+}
+
+.addedItemInCart {
+  list-style: none;
+  border-bottom: 1px solid var(--color-rose-300);
+  padding: 6px;
+  margin: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.addedItemInCart .crossIcon {
+  width: 14px;
+  height: 14px;
+  padding: 2px;
+  border-radius: 50%;
+  border: 1px solid var(--color-rose-500);
+}
+.addedItemInCart .crossIcon svg {
+  transform: translate(0px, -4px);
+}
+.priceCal{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
