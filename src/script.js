@@ -83,6 +83,7 @@ function addToCart(data) {
           itemCount.innerText = count;
           const item = data.find((item) => item.unique_id === unique_id);
           if (item) {
+            // document.getElementById("cartImageID").style.display = "none"; 
             updateCartSection(item);
           }
         });
@@ -94,6 +95,7 @@ function addToCart(data) {
             const item = data.find((item) => item.unique_id === unique_id);
               updateCartSection(item);
           }
+          // document.querySelector(".itemCartMainContainer").appendChild("cartImageID");
         });
       }
     });
@@ -102,20 +104,48 @@ function addToCart(data) {
 
 function updateCartSection(item) {
   const cartSectionImg = document.getElementById("cartImageID");
-  const countPicker =  document.querySelector(".itemCount").innerText
-  const totalPriceOfOneItem = parseInt(countPicker*item.price);
-  if (cartSectionImg) {
-    const cartMenuItemList = `<div id='itemNameinCartList'>
-    <li class="addedItemInCart"><div><div>${
-      item.name
-    }</div>
-    <div class="priceCal"><span>${countPicker}x</span><span>@ $${item.price.toFixed(2)}</span> <span>$${totalPriceOfOneItem.toFixed(2)}</span></div></div>
-    <div class="crossIcon"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" 
-    viewBox="0 0 10 10"><path fill="#CAAFA7" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4
-     8.375.625l1 1L6 5l3.375 3.375-1 1Z"/></svg></div></li></div>`;
-    cartSectionImg.innerHTML = cartMenuItemList;
-    
+  const countPicker = parseInt(document.querySelector(`#addToCartBtn_${item.unique_id} .itemCount`).innerText);
+  const totalPriceOfOneItem = countPicker * item.price;
+  const existingCartItem = document.getElementById(`cartItem_${item.unique_id}`);
+  if (existingCartItem) {
+    const itemQuantity = existingCartItem.querySelector(".itemCountInCart");
+    const itemPrice = existingCartItem.querySelector(".itemTotalPriceInCart");
+    itemQuantity.innerText = `${countPicker}x`;
+    itemPrice.innerText = `$${totalPriceOfOneItem.toFixed(2)}`;
+  } else {
+    const cartMenuItemList = `
+    <ul>  
+    <li id="cartItem_${item.unique_id}" class="addedItemInCart">
+        <div>
+          <div>${item.name}</div>
+          <div class="priceCal">
+            <span class="itemCountInCart">${countPicker}x</span>
+            <span>@ $${item.price.toFixed(2)}</span> 
+            <span class="itemTotalPriceInCart">$${totalPriceOfOneItem.toFixed(2)}</span>
+          </div>
+        </div>
+        <div class="crossIcon" data-id="${item.unique_id}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" 
+            viewBox="0 0 10 10">
+            <path fill="#CAAFA7" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4
+             8.375.625l1 1L6 5l3.375 3.375-1 1Z"/>
+          </svg>
+        </div>
+      </li>
+      </ul>`;
+    cartSectionImg.innerHTML += cartMenuItemList;
   }
+  const crossIcons = document.querySelectorAll(".crossIcon");
+  crossIcons.forEach((icon) => {
+    icon.addEventListener("click", function () {
+      const itemId = this.getAttribute("data-id");
+      const cartItem = document.getElementById(`cartItem_${itemId}`);
+      if (cartItem) {
+        cartItem.remove();
+      }
+    });
+  });
 }
+
 
 getItemData();
