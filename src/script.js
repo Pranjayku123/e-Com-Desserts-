@@ -83,7 +83,6 @@ function addToCart(data) {
           itemCount.innerText = count;
           const item = data.find((item) => item.unique_id === unique_id);
           if (item) {
-            // document.getElementById("cartImageID").style.display = "none"; 
             updateCartSection(item);
           }
         });
@@ -107,15 +106,20 @@ function updateCartSection(item) {
   const countPicker = parseInt(document.querySelector(`#addToCartBtn_${item.unique_id} .itemCount`).innerText);
   const totalPriceOfOneItem = countPicker * item.price;
   const existingCartItem = document.getElementById(`cartItem_${item.unique_id}`);
-  if (existingCartItem) {
+  const cartUpdate = document.getElementById("cartItomCount");
+  const emptyCartImgRemove = document.querySelector(".emptyCartImg");
+  if ( existingCartItem) {
     const itemQuantity = existingCartItem.querySelector(".itemCountInCart");
     const itemPrice = existingCartItem.querySelector(".itemTotalPriceInCart");
     itemQuantity.innerText = `${countPicker}x`;
     itemPrice.innerText = `$${totalPriceOfOneItem.toFixed(2)}`;
+    cartUpdate.innerText = `(${countPicker})`;
+    emptyCartImgRemove.remove();
   } else {
+    cartUpdate.innerText = `(${countPicker})`;
+    
     const cartMenuItemList = `
-    <ul>  
-    <li id="cartItem_${item.unique_id}" class="addedItemInCart">
+    <div id="cartItem_${item.unique_id}" class="addedItemInCart">
         <div>
           <div>${item.name}</div>
           <div class="priceCal">
@@ -131,10 +135,10 @@ function updateCartSection(item) {
              8.375.625l1 1L6 5l3.375 3.375-1 1Z"/>
           </svg>
         </div>
-      </li>
-      </ul>`;
+      </div>`;
     cartSectionImg.innerHTML += cartMenuItemList;
   }
+
   const crossIcons = document.querySelectorAll(".crossIcon");
   crossIcons.forEach((icon) => {
     icon.addEventListener("click", function () {
@@ -145,7 +149,17 @@ function updateCartSection(item) {
       }
     });
   });
+  cartItemCounter();  
+
 }
 
 
+cartItemCounter = () => {
+  const cartItemParentElement = document.getElementById("cartImageID");
+  for(var i = 0; i < cartItemParentElement.length; i++){
+    var count = cartItemParentElement[i].getElementsByTagName('div').childElementCount;
+    console.log('div ' + i + ' count ' + count);
+   
+}
+}
 getItemData();
